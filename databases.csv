@@ -1,0 +1,3 @@
+tool,db_name,db_params,db_path
+metaphlan,db1,,az://orange/databases/metaphlan_db
+motus,db_mOTU,,/Users/apca/anaconda3/envs/motus/lib/python3.9/site-packages/motus/db_mOTU

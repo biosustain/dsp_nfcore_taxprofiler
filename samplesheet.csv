@@ -1,0 +1,5 @@
+sample,run_accession,instrument_platform,fastq_1,fastq_2,fasta
+O1,run1,ILLUMINA,az://orange/data/O1_1.fq.gz,az://orange/data/O1_2.fq.gz,
+O2,run1,ILLUMINA,az://orange/data/O2_1.fq.gz,az://orange/data/O2_2.fq.gz,
+O3,run1,ILLUMINA,az://orange/data/O3_1.fq.gz,az://orange/data/O3_2.fq.gz,
+O4,run1,ILLUMINA,az://orange/data/O4_1.fq.gz,az://orange/data/O4_2.fq.gz,
