@@ -43,8 +43,11 @@ It got copied the database locally in here: /Users/apca/anaconda3/envs/motus/lib
 
 ## Command line to run it using Metaphlan and mOTU
 ```
-nextflow run nf-core/taxprofiler -profile az_test,docker --input samplesheet.csv --databases databases.csv --outdir results --perform_shortread_qc --shortread_qc_tool adapterremoval --perform_shortread_complexityfilter --perform_shortread_hostremoval --hostremoval_reference az://masldmice/host_genome/GCF_000001635.27_GRCm39_genomic.fna --run_metaphlan --run_motus --motus_use_relative_abundance --run_krona -w az://taxprofiler -resume -with-tower
+nextflow run nf-core/taxprofiler -profile az_test,docker --input samplesheet.csv --databases databases.csv --outdir results --perform_shortread_qc --shortread_qc_tool adapterremoval --perform_shortread_complexityfilter --perform_shortread_hostremoval --hostremoval_reference az://masldmice/host_genome/GCF_000001635.27_GRCm39_genomic.fna --perform_runmerging --run_metaphlan --run_profile_standardisation -w az://masldmice/work -with-tower -resume
 ```
+# Worth noticing
+You need to add --perform_runmerging to merge different lanes of the same sample
+You need to add --run_profile_standardisation so that all metaphlan profile of each sample get combined in a single report (This may be changed soon, follow issue: https://github.com/nf-core/taxprofiler/issues/494)
 
 ## Seqera platform
 Notice that one parameter tells the pipeline to be monitored by Seqera platform (-with-tower)
@@ -63,4 +66,12 @@ pools {
         vmType = 'Standard_E16s_v3'
         }
     }
+```
+Also had to add the following code to skip a step that does not work well with Metaphlan:
+```
+process {
+    withName: 'TAXPASTA_MERGE' {
+        when = false
+    }
+}
 ```
